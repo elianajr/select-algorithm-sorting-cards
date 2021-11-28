@@ -8,6 +8,7 @@ const BODY = document.querySelector("body");
 const BOX = document.querySelector(".boxCard");
 const INPUT = document.querySelector("#numberGenerator");
 const SORT = document.querySelector("#sort");
+const SORTBOX = document.querySelector(".sortBoxCard");
 const FORM = document.querySelector("form");
 
 var DECK = 0; //event submit
@@ -25,12 +26,13 @@ FORM.addEventListener("submit", event => {
   for (let i = 0; i < DECK; i++) {
     cards.push(getCard());
   }
-  createCard(cards);
+  createCard(cards, BOX);
 });
 
+//select-sorting-algorithm
 SORT.addEventListener("click", event => {
   event.preventDefault();
-  BOX.innerHTML = "";
+  SORTBOX.innerHTML = "";
   let min = 0;
   while (min < cards.length - 1) {
     for (let i = min + 1; i < cards.length; i++) {
@@ -42,7 +44,7 @@ SORT.addEventListener("click", event => {
     }
     min++;
   }
-  createCard(cards);
+  createCard(cards, SORTBOX);
 });
 
 function getCard() {
@@ -56,11 +58,11 @@ function randomValue(list) {
   return Math.floor(Math.random() * list.length);
 }
 
-function createCard(cards) {
+function createCard(cards, container) {
   for (const i of cards) {
     let card = document.createElement("div");
     card.classList.add("card");
-    BOX.appendChild(card);
+    container.appendChild(card);
 
     let top = document.createElement("div");
     top.classList.add("card-topsuit");
@@ -83,6 +85,18 @@ function createCard(cards) {
     } else {
       top.classList.add("color-black");
       bottom.classList.add("color-black");
+    }
+
+    if (i.cardNumber == 1) {
+      center.innerHTML = "A";
+    } else if (i.cardNumber == 10) {
+      center.innerHTML = "J";
+    } else if (i.cardNumber == 11) {
+      center.innerHTML = "Q";
+    } else if (i.cardNumber == 12) {
+      center.innerHTML = "K";
+    } else {
+      center.innerHTML = i.cardNumber;
     }
   }
 }

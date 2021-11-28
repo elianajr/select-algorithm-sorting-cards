@@ -126,3 +126,17 @@ body {
 #numberGenerator:hover {
   box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.5);
 }
+
+.boxCard {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.sortBoxCard {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
